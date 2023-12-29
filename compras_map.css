@@ -1,0 +1,91 @@
+*{
+  
+   background-color: rgb(240, 235, 235);
+}
+
+.titulo{
+    display: flex;
+  
+    justify-content: center;
+}
+
+h1{
+    width:25rem ;
+    font-size: 4rem;
+    background: linear-gradient(to right,blue,green,yellow);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+form{
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    width: 20rem;
+    border: solid 3px rgb(191, 170, 145);
+    padding: 1rem;
+    justify-content: space-around;
+    height: 8rem;
+    background-color: aquamarine;
+}
+
+.espaForm{
+    
+    display: flex;
+    justify-content: space-around;
+    background-color: aquamarine;
+}
+
+label{
+
+    width: 6rem;
+    border: solid 2px;
+    border-radius: 1rem;    
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(235, 241, 239);
+}
+
+input{
+    width: 40%;
+    text-align: center;
+}
+
+button{
+    width: 60%;
+    height: 2rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    background-color: rgb(15, 58, 8);
+    color: aliceblue;
+}
+
+.divTable{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table{
+    width: 40rem;
+}
+
+th{
+    background-color: rgba(165, 42, 42, 0.85);
+}
+
+td{
+    text-align: center;
+    background: linear-gradient(orange,rgba(0, 0, 255, 0.797));
+}
+
+.total{
+    font-weight: bold;
+}
+
+.vacio{
+    background-color: transparent;
+}

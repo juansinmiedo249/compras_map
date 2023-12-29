@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuanMercado</title>
+    <link rel="stylesheet" href="./compras_map.css">
+</head>
+<body>
+    <div class="titulo">
+        <h1>JuanMercado</h1>
+    </div>
+    
+    <div >
+        <form action="" id="formato">
+            <div class="espaForm">
+                <label for="codigo" >Codigo</label>
+                <input type="number" name="codigo" id="codigo">
+            </div>
+            <div class="espaForm">
+                <label for="cantidad" >Cantidad</label>
+                <input type="number" name="cantidad" id="cantidad">
+            </div>
+            <div class="espaForm">
+                <button onclick="capturarForm()">Ingresar</button>
+            </div>
+        </form>
+    </div>
+    <div class="divTable">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>cantidad</th>
+                    <th>Valor Unitario</th>
+                    <th>Valor total</th>
+                </tr>
+            </thead>
+            <tbody id="tDatos"></tbody>
+        </table>
+    </div>
+
+
+    <script>
+
+        let compras = new Map();
+
+        function capturarForm(){
+            event.preventDefault();
+            let codigo = Number(document.querySelector("#codigo").value);
+            let cantidad = Number(document.querySelector("#cantidad").value);
+                        
+            const mapArticulos = inventario();
+            const articulo = Busqueda(mapArticulos, codigo);
+                   
+            calculadora(articulo,cantidad,codigo);
+            
+        }
+
+        
+
+        function inventario(){
+            
+            const mapArticulos = new Map();
+            mapArticulos.set(1,["Lapiz",2500]);
+            mapArticulos.set(2,["Cuaderno",3800]);
+            mapArticulos.set(3,["Borador",2100]);
+            mapArticulos.set(4,["Calculadora",3800]);
+            mapArticulos.set(5,["Escuadra",3700]);
+         
+                                   
+            return(mapArticulos);
+        }
+
+        function Busqueda(mapArticulos, codigo){
+            const articuloBuscado = mapArticulos.get(codigo)
+            return articuloBuscado;
+            
+        }
+
+        function calculadora(articulo,cantidad,codigo){
+            
+            const valorTotal = articulo[1] * cantidad
+            const productoComprado = [articulo[0], cantidad, articulo[1], valorTotal];          
+            
+            compras.set(codigo,productoComprado);
+
+            const arrCompras = Array.from(compras.values());
+
+            let totalpagar = arrCompras.reduce((total, producto) =>{
+                return total += producto[3]
+            },0)            
+
+            console.log("Total a pagar es: ",totalpagar);
+            inserHtml(totalpagar);
+        }
+
+        function inserHtml(totalpagar){
+            let tabla = "";
+            
+            compras.forEach(function(v, k){
+                tabla += "<tr>";
+                v.forEach(elemento => tabla += `<td>${elemento}</td>`);
+                tabla += "</tr>";
+            });
+
+            tabla += `<tr><td class= "vacio"></td><td class= "vacio"></td><td class= "total">Total:</td><td>$${totalpagar}</td></tr> `
+
+            document.getElementById("tDatos").innerHTML = tabla;
+        }
+
+       
+    </script>
+        
+    
+</body>
+</html>
